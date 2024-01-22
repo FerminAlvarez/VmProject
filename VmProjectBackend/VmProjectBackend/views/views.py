@@ -1,5 +1,8 @@
 from django.http import HttpResponse, JsonResponse
 from ..auth.Auth import authenticated, get_access_token
+from ..ssh.remote_vm import execute_vm_command
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 def hello(request):
     if authenticated(request.headers.get('Authorization')):
@@ -13,4 +16,18 @@ def get_token(request):
         return JsonResponse({"access_token": token})
     else:
         return JsonResponse({"error": "Error obtaining token"}, status = 401)
+    
+@csrf_exempt 
+def command_vm(request):
+    if not authenticated(request.headers.get('Authorization')):
+        return JsonResponse({"error": "Authentication failed"}, status = 401)
+    
+    try:
+        data = json.loads(request.body.decode('utf-8'))
+        command = data.get('command', '')
+        output = execute_vm_command(command)
+        return JsonResponse({"output": output})
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON in the request body"}, status=400)
+    
     

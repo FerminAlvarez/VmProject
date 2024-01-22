@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -122,7 +123,12 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-KEYCLOAK_SERVER_URL="http://127.0.0.1:4000/auth"
-KEYCLOAK_REALM="vmrealm"
-KEYCLOAK_CLIENT_ID="vmclient"
-KEYCLOAK_CLIENT_SECRET="eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJhZWVhZDRmZi02OTc5LTQ5ZmItYjg3OS03YmU4MWNjYTMwZDIifQ.eyJleHAiOjE3MDc2MjY2MTUsImlhdCI6MTcwNTg5ODYxNSwianRpIjoiNzk4ODMyOTUtNWE1Zi00MDgzLWJiMzItMmIwM2ZhOWQyZGIzIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0MDAwL3JlYWxtcy92bXJlYWxtIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MDAwL3JlYWxtcy92bXJlYWxtIiwidHlwIjoiSW5pdGlhbEFjY2Vzc1Rva2VuIn0.Fy6Rm0b1Bo36mkRR7q-0ZlZdAhmE9clOGKL1-fFH8J0"
+KEYCLOAK_SERVER_URL=config('KEYCLOAK_SERVER_URL')
+KEYCLOAK_REALM=config('KEYCLOAK_REALM')
+KEYCLOAK_CLIENT_ID=config('KEYCLOAK_CLIENT_ID')
+KEYCLOAK_CLIENT_SECRET=config('KEYCLOAK_CLIENT_SECRET')
+
+VMHOST=config('VMHOST')
+VMUSER=config('VMUSER')
+VMPASSWORD=config('VMPASSWORD')
+VMPRIVATE_KEY_PATH=config('VMPRIVATE_KEY_PATH')

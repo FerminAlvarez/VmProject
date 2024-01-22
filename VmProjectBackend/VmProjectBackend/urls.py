@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("hello/", views.hello, name="hello"),
     path("auth/", views.get_token, name="get_token"),
+    path("command-vm/", views.command_vm, name="command_vm"),
 ]
