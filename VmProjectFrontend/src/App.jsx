@@ -29,6 +29,7 @@ function App() {
         {keycloak.authenticated &&
           <button onClick={() => keycloak.logout()}>Logout ({keycloak.tokenParsed.preferred_username})</button>
         }
+        {console.log(keycloak.token)}
 
       </ul>
     </div>
