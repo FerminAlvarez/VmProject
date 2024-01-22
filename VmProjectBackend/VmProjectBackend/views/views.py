@@ -3,6 +3,7 @@ from ..auth.Auth import authenticated, get_access_token
 from ..ssh.remote_vm import execute_vm_command
 from django.views.decorators.csrf import csrf_exempt
 import json
+import subprocess
 
 def hello(request):
     if authenticated(request.headers.get('Authorization')):
@@ -29,5 +30,20 @@ def command_vm(request):
         return JsonResponse({"output": output})
     except json.JSONDecodeError:
         return JsonResponse({"error": "Invalid JSON in the request body"}, status=400)
-    
-    
+     
+@csrf_exempt   
+def python_command(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+            command = data.get('python_code', '')
+            print(command)
+            
+            result = subprocess.check_output(['python', '-c', command], text=True)
+            print(result)
+
+            return JsonResponse({'result': result})
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+    else:
+        return JsonResponse({'error': 'Only POST requests are allowed'}, status=400)

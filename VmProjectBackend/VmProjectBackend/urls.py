@@ -23,4 +23,5 @@ urlpatterns = [
     path("hello/", views.hello, name="hello"),
     path("auth/", views.get_token, name="get_token"),
     path("command-vm/", views.command_vm, name="command_vm"),
+    path('command-python/', views.python_command, name='python_command'),
 ]
