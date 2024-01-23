@@ -1,44 +1,24 @@
-import { useState, useEffect } from 'react';
-export default function VmTerminalComponent({ token }) {
-    const [webSocket, setWebSocket] = useState(null);
-    const [webSocketMessages, setWebSocketMessages] = useState('');
+import React, { useState } from 'react';
+import WebSocketConnector from '../utils/WebSocketConnector';
 
-    const websocketUrl = 'ws://localhost:8000/?token=' + encodeURIComponent('Bearer ' + token);
+const VmTerminalComponent = ({ token }) => {
+    const [isWebSocketConnected, setWebSocketConnected] = useState(false);
+    const { webSocketMessages, sendMessage, connectWebSocket, disconnectWebSocket } = WebSocketConnector(token);
 
-    useEffect(() => {
-        const socket = new WebSocket(websocketUrl);
-
-        socket.onopen = () => {
-            console.log('WebSocket abierto');
-        };
-
-        socket.onmessage = (event) => {
-            console.log(event.data)
-            setWebSocketMessages((prevMessages) => [...prevMessages, event.data]);
-        };
-
-        socket.onclose = () => {
-            console.log('WebSocket cerrado');
-        };
-
-        setWebSocket(socket);
-
-        return () => {
-            if (webSocket) {
-                webSocket.close();
-            }
-        };
-    }, []);
-
-    const sendMessage = (message) => {
-        if (webSocket) {
-            webSocket.send(message);
+    const handleToggleWebSocketConnection = () => {
+        if (isWebSocketConnected) {
+            disconnectWebSocket();
+            setWebSocketConnected(false);
+        } else {
+            connectWebSocket();
+            setWebSocketConnected(true);
         }
     };
 
     return (
         <div>
             <h1>Vm Terminal</h1>
+            <button onClick={() => handleToggleWebSocketConnection()}>{isWebSocketConnected ? "Disconnect" : "Connect to VM Terminal"}</button>
             <button onClick={() => sendMessage(JSON.stringify({ "command": "sudo apt-get install python3" }))}>Enviar Mensaje</button>
             <div>
                 <ul>
@@ -48,5 +28,7 @@ export default function VmTerminalComponent({ token }) {
                 </ul>
             </div>
         </div>
-    )
-}
+    );
+};
+
+export default VmTerminalComponent;
