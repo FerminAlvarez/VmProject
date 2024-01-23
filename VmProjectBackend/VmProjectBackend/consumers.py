@@ -7,7 +7,13 @@ class MyConsumer(WebsocketConsumer):
 
     def connect(self):
         print('Connection established')
-        if(authenticated(self.__build_token())):
+        try:
+            token = self.__build_token()
+        except Exception as e:
+            self.close()
+            return 
+        
+        if(authenticated(token)):
             self.accept()
             open_client()
             self.send(get_welcome_message())
