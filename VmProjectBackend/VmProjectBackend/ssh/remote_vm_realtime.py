@@ -1,31 +1,42 @@
 from django.conf import settings
-import time
 import re
 import paramiko
+import time
+
 
 VMHOST=settings.VMHOST
 VMUSER=settings.VMUSER
 VMPASSWORD=settings.VMPASSWORD
 VMPRIVATE_KEY_PATH=settings.VMPRIVATE_KEY_PATH
 
+BUFFER_SIZE = 4096
+
+EXPECTED_TERMINATING_LINE = "vm@vmproject:~$"
+CONTINUE_PROMPT = "Y/n"
+
 client = paramiko.SSHClient()
 client.set_missing_host_key_policy(paramiko.AutoAddPolicy)
 private_key = paramiko.RSAKey(filename=VMPRIVATE_KEY_PATH, password=VMPASSWORD)
 client.connect(VMHOST, username=VMUSER, pkey=private_key)
 channel = client.invoke_shell()
+channel.settimeout(5)
 
 def execute_vm_command( command):
         print(command)
         try:
             channel.send(command + '\n')
-            
-            while not channel.recv_ready():
-                time.sleep(0.1)
                 
-            out = channel.recv(99999)
-            cleaned_output = decode(out)
+            while True:
+                out = channel.recv(BUFFER_SIZE)
+                cleaned_output = decode(out)
+                yield cleaned_output
+                
+                if EXPECTED_TERMINATING_LINE in cleaned_output or CONTINUE_PROMPT in cleaned_output:
+                    break
+                
+        except TimeoutError as e:
+            print("The operation timed out")
             
-            return cleaned_output
         except Exception as e:
             print("There was an error", e)
             return str(e)
@@ -39,3 +50,9 @@ def decode( text):
     decoded_output = text.decode('utf-8')
     ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
     return  ansi_escape.sub('', decoded_output)
+
+def get_welcome_message():
+    out = channel.recv(BUFFER_SIZE)
+    cleaned_output = decode(out)
+    print(cleaned_output)
+    return cleaned_output
