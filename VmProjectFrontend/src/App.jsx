@@ -1,6 +1,7 @@
 import './App.css'
 import { Link } from 'react-router-dom'
 import { useKeycloak } from '@react-keycloak/web'
+import VmTerminalComponent from './components/VmTerminalComponent';
 
 function App() {
   const { keycloak, initialized } = useKeycloak();
@@ -27,7 +28,10 @@ function App() {
         }
 
         {keycloak.authenticated &&
-          <button onClick={() => keycloak.logout()}>Logout ({keycloak.tokenParsed.preferred_username})</button>
+          <div>
+            <button onClick={() => keycloak.logout()}>Logout ({keycloak.tokenParsed.preferred_username})</button>
+            <VmTerminalComponent token={keycloak.token}/>
+          </div>
         }
         {console.log(keycloak.token)}
 
