@@ -2,6 +2,7 @@ import './App.css'
 import { Link } from 'react-router-dom'
 import { useKeycloak } from '@react-keycloak/web'
 import VmTerminalComponent from './components/VmTerminalComponent';
+import HeroComponent from './components/HeroComponent';
 
 function App() {
   const { keycloak, initialized } = useKeycloak();
@@ -11,31 +12,29 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>Keycloak Auth</h1>
-
-      <ul>
-        <li>
-          <Link to={"/public"}>Public Page</Link>
-        </li>
-
-        <li>
-          <Link to={"/protected"}>Protected Page</Link>
-        </li>
-
+    <div className='flex flex-col items-center justify-center'>
+      <div className='top-0 mt-10'>
+        <HeroComponent />
         {!keycloak.authenticated &&
-          <button onClick={() => keycloak.login()}>Login</button>
+          <button className="bg-green-700" onClick={() => keycloak.login()}>Login</button>
         }
-
         {keycloak.authenticated &&
-          <div>
-            <button onClick={() => keycloak.logout()}>Logout ({keycloak.tokenParsed.preferred_username})</button>
-            <VmTerminalComponent token={keycloak.token}/>
-          </div>
+            <button className="bg-red-700"onClick={() => keycloak.logout()}>Logout ({keycloak.tokenParsed.preferred_username})</button>
         }
-        {console.log(keycloak.token)}
+      </div>
 
-      </ul>
+      <div className='flex justify-center w-screen'>
+        <div className='w-1/2 mx-16'>
+          {keycloak.authenticated &&
+              <VmTerminalComponent token={keycloak.token} />
+          }
+        </div>
+
+        <div className='w-1/2 mx-16'>
+          Python Enviroment
+        </div>
+      </div>
+      
     </div>
 
   )

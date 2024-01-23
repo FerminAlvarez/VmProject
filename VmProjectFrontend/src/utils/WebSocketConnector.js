@@ -16,8 +16,9 @@ const WebSocketConnector = (token) => {
             };
 
             socket.onmessage = (event) => {
-                console.log(event.data);
-                setWebSocketMessages((prevMessages) => [...prevMessages, event.data]);
+                let newMessages = event.data.split(/\r\r|\n/);
+                newMessages = newMessages.filter(line => line.trim() !== '' && line.trim() !== '\r');
+                setWebSocketMessages((prevMessages) => [...prevMessages,...newMessages]);
             };
 
             socket.onclose = () => {
