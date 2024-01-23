@@ -1,13 +1,17 @@
 import json
 from channels.generic.websocket import WebsocketConsumer
-from .ssh.remote_vm_realtime import  execute_vm_command, decode, get_welcome_message
+from .ssh.remote_vm_realtime import  execute_vm_command, get_welcome_message
+from .auth.Auth import authenticated
 
 class MyConsumer(WebsocketConsumer):
 
     def connect(self):
         print('Connection established')
-        self.accept()
-        self.send(get_welcome_message())
+        if(authenticated(self.__build_token())):
+            self.accept()
+            self.send(get_welcome_message())
+        else:
+            self.close()
 
     def disconnect(self, close_code):
         print('Disconnected')
@@ -24,3 +28,6 @@ class MyConsumer(WebsocketConsumer):
         
         for line in execute_vm_command(command):
             self.send_response(line)
+            
+    def __build_token(self):
+        return self.scope.get("query_string").decode("utf-8").split("=")[1].replace("%20", " ")
