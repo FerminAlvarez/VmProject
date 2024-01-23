@@ -1,6 +1,6 @@
 import json
 from channels.generic.websocket import WebsocketConsumer
-from .ssh.remote_vm_realtime import  execute_vm_command, get_welcome_message
+from .ssh.remote_vm_realtime import  execute_vm_command, get_welcome_message, open_client
 from .auth.Auth import authenticated
 
 class MyConsumer(WebsocketConsumer):
@@ -9,6 +9,7 @@ class MyConsumer(WebsocketConsumer):
         print('Connection established')
         if(authenticated(self.__build_token())):
             self.accept()
+            open_client()
             self.send(get_welcome_message())
         else:
             self.close()
