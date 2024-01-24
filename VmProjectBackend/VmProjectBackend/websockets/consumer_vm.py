@@ -22,7 +22,7 @@ class ConsumerVM(WebsocketConsumer):
 
     def disconnect(self, close_code):
         print('Disconnected')
-        self.close()
+        self.close(close_code)
     
     def send_response(self, response):
         self.send(response)
@@ -30,11 +30,15 @@ class ConsumerVM(WebsocketConsumer):
     def receive(self, text_data):
         print('Received Message')
 
-        text_data_json = json.loads(text_data)
-        command = text_data_json['command']
-        
-        for line in execute_vm_command(command):
-            self.send_response(line)
+        try:
+            text_data_json = json.loads(text_data)
+            command = text_data_json['command']
+            for line in execute_vm_command(command):
+                self.send_response(line)
+                
+        except json.JSONDecodeError:
+            self.send_response("Unexpected message")
+            self.disconnect(4000)
             
     def __build_token(self):
         return self.scope.get("query_string").decode("utf-8").split("=")[1].replace("%20", " ")
