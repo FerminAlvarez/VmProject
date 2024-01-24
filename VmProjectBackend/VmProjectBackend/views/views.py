@@ -33,6 +33,9 @@ def command_vm(request):
      
 @csrf_exempt   
 def python_command(request):
+    if not authenticated(request.headers.get('Authorization')):
+        return JsonResponse({"error": "Authentication failed"}, status = 401)
+    
     if request.method == 'POST':
         try:
             data = json.loads(request.body.decode('utf-8'))
