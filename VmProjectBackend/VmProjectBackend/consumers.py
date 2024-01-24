@@ -1,6 +1,6 @@
 import json
 from channels.generic.websocket import WebsocketConsumer
-from .ssh.remote_vm_realtime import  execute_vm_command, get_welcome_message, open_client
+from .ssh.websocket.remote_vm_realtime import  execute_vm_command, get_welcome_message, open_client
 from .auth.Auth import authenticated
 
 class MyConsumer(WebsocketConsumer):
