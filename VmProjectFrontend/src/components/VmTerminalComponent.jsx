@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import WebSocketConnector from '../utils/WebSocketConnector';
 import InputShellComponent from './InputShellComponent';
 
+const WEBSOCKET_URL = "ws://localhost:8000/vm/"
+
 const VmTerminalComponent = ({ token }) => {
     const [isWebSocketConnected, setWebSocketConnected] = useState(false);
-    const { webSocketMessages, sendMessage, connectWebSocket, disconnectWebSocket } = WebSocketConnector(token);
+    const { webSocketMessages, sendMessage, connectWebSocket, disconnectWebSocket } = WebSocketConnector(WEBSOCKET_URL, token);
 
     const handleToggleWebSocketConnection = () => {
         if (isWebSocketConnected) {
@@ -14,6 +16,10 @@ const VmTerminalComponent = ({ token }) => {
             connectWebSocket();
             setWebSocketConnected(true);
         }
+    };
+
+    const handleSendMessage = () => {
+        sendMessage(JSON.stringify({ "command": event.target.value }))
     };
 
     return (
@@ -29,7 +35,7 @@ const VmTerminalComponent = ({ token }) => {
                     {webSocketMessages.map((message, index) => (
                         message.includes('vm@vmproject:~') || message.includes('Y/n')  ?
                             <span key={index} className='whitespace-pre-wrap text-green-600 inline-flex'>{message}
-                                <InputShellComponent sendMessage={sendMessage}/>
+                                <InputShellComponent sendMessage={handleSendMessage}/>
                             </span>
                             :
                             <span key={index} className='whitespace-pre-wrap'>{message}</span>

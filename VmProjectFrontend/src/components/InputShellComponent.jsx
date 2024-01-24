@@ -8,7 +8,7 @@ const InputShellComponent = ({sendMessage}) => {
         if (event.key === 'Enter') {
             setEnabled(false)
             setText(event.target.value)
-            sendMessage(JSON.stringify({ "command": event.target.value }))
+            sendMessage()
         }
     }
 

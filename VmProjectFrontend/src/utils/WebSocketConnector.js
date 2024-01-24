@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
-const WebSocketConnector = (token) => {
+const WebSocketConnector = (url, token) => {
     const [webSocket, setWebSocket] = useState(null);
     const [webSocketMessages, setWebSocketMessages] = useState([]);
     const [isWebSocketConnected, setWebSocketConnected] = useState(false);
 
-    const WEB_SOCKET_URL = 'ws://localhost:8000/?token=' + encodeURIComponent('Bearer ' + token);
+    const WEB_SOCKET_URL = url + '?token=' + encodeURIComponent('Bearer ' + token);
 
     useEffect(() => {
         if (isWebSocketConnected) {
