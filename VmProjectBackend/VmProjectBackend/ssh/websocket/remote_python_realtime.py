@@ -57,6 +57,7 @@ def __get_all_lines():
         yield cleaned_output
         
         if EXPECTED_TERMINATING_LINE in cleaned_output:
+            channel.send("exit()" + '\n')
             break
         
 def create_sandbox_environment():
