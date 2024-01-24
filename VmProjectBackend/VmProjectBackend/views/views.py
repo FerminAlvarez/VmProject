@@ -1,6 +1,6 @@
 from django.http import HttpResponse, JsonResponse
 from ..auth.Auth import authenticated, get_access_token
-from ..ssh.remote_vm import execute_vm_command
+from ..ssh.remote_vm import execute_vm_command, execute_python_command
 from django.views.decorators.csrf import csrf_exempt
 import json
 import subprocess
@@ -39,10 +39,8 @@ def python_command(request):
             command = data.get('python_code', '')
             print(command)
             
-            result = subprocess.check_output(['python', '-c', command], text=True)
-            print(result)
-
-            return JsonResponse({'result': result})
+            output = execute_python_command(command)
+            return JsonResponse({"output": output})
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
     else:

@@ -22,6 +22,25 @@ def execute_vm_command(command):
         print("There was an error", e)
         return stderr
 
+def execute_python_command(command): 
+    try:
+        client = paramiko.SSHClient()
+        client.set_missing_host_key_policy(paramiko.AutoAddPolicy)
+        private_key = paramiko.RSAKey(filename=VMPRIVATE_KEY_PATH, password=VMPASSWORD)
+        client.connect(VMHOST, username=VMUSER, pkey=private_key)
+        
+        docker_command = f'sudo docker run -i --rm python-sandbox python -c "{command}"'
+
+        stdin, stdout, stderr = client.exec_command(docker_command)
+        result = stdout.read().decode()
+        print(result)
+        
+        output  = build_output(result)
+        return output
+    except Exception as e:
+        print("There was an error", e)
+        return stderr
+
 
 def build_output(result):
     output = [line.strip() for line in result.split("\n") if line.strip()]
