@@ -1,9 +1,9 @@
 import json
 from channels.generic.websocket import WebsocketConsumer
-from .ssh.websocket.remote_vm_realtime import  execute_vm_command, get_welcome_message, open_client
-from .auth.Auth import authenticated
+from ..ssh.websocket.remote_vm_realtime import  execute_vm_command, get_welcome_message, open_client
+from ..auth.Auth import authenticated
 
-class MyConsumer(WebsocketConsumer):
+class ConsumerVM(WebsocketConsumer):
 
     def connect(self):
         print('Connection established')
