@@ -1,6 +1,6 @@
 import json
 from channels.generic.websocket import WebsocketConsumer
-from ..ssh.websocket.remote_python_realtime import  execute_python_command, create_sanbox_environment, open_client
+from ..ssh.websocket.remote_python_realtime import  execute_python_command, create_sandbox_environment, open_client
 from ..auth.Auth import authenticated
 
 class ConsumerPY(WebsocketConsumer):
@@ -16,7 +16,7 @@ class ConsumerPY(WebsocketConsumer):
         if(authenticated(token)):
             self.accept()
             open_client()
-            self.send(create_sanbox_environment())
+            self.send(create_sandbox_environment())
         else:
             self.close()
 

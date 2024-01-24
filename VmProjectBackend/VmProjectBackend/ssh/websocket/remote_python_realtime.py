@@ -58,7 +58,7 @@ def __get_all_lines():
         if EXPECTED_TERMINATING_LINE in cleaned_output:
             break
         
-def create_sanbox_environment():
+def create_sandbox_environment():
     cleaned_output = ''
     while True:
         out = channel.recv(BUFFER_SIZE)
