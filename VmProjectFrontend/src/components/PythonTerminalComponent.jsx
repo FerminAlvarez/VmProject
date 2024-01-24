@@ -32,7 +32,7 @@ const PythonTerminalComponent = ({ token }) => {
                 </button>
             </div>
             {isWebSocketConnected &&
-                <code className="grid grid-flow-row text-sm sm:text-base text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6 overflow-auto h-96">
+                <code className="flex flex-col text-sm sm:text-base text-left items-start space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6 overflow-auto h-96">
                     {webSocketMessages.map((message, index) => (
                         message.includes('>>>') ?
                             <span key={index} className='whitespace-pre-wrap text-green-600 inline-flex'>{message}
