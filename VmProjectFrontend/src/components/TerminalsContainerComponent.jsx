@@ -1,10 +1,10 @@
 import WindowsComponent from "./WindowsComponent";
 
-const WEBSOCKET_URL_PYTHON = "ws://localhost:8000/python/";
-const EXPECTED_TERMINATING_LINES_PYTHON = [">>>"];
+const WEBSOCKET_URL_VM = import.meta.env.VITE_WEBSOCKET_URL_VM;
+const WEBSOCKET_URL_PYTHON = import.meta.env.VITE_WEBSOCKET_URL_PYTHON;
 
-const WEBSOCKET_URL_VM = "ws://localhost:8000/vm/";
 const EXPECTED_TERMINATING_LINES_VM = ["vm@vmproject:", "Y/n"];
+const EXPECTED_TERMINATING_LINES_PYTHON = [">>>"];
 
 const TerminalsContainerComponent = ({ token }) => {
     return (
