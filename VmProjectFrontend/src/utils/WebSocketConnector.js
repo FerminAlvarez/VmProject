@@ -22,8 +22,8 @@ const WebSocketConnector = (url, token) => {
             };
 
             socket.onclose = () => {
-                console.log('WebSocket cerrado');
                 setWebSocketConnected(false);
+                setWebSocketMessages((prevMessages) => [...prevMessages, "Connection lost."]);
             };
 
             setWebSocket(socket);
