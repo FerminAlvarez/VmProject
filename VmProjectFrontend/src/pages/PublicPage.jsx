@@ -9,5 +9,5 @@ export default function PublicPage() {
                 <button>Home</button>
             </Link>
         </div>
-    )
+    );
 }
