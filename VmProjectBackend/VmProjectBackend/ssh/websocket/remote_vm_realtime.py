@@ -55,7 +55,7 @@ def __get_all_lines():
         cleaned_output = decode(out)
         yield cleaned_output
         
-        if EXPECTED_TERMINATING_LINE in cleaned_output or CONTINUE_PROMPT in cleaned_output:
+        if EXPECTED_TERMINATING_LINE in cleaned_output or CONTINUE_PROMPT in cleaned_output or cleaned_output=='':
             break
         
 def get_welcome_message():
