@@ -14,7 +14,7 @@ const InputShellComponent = ({sendMessage}) => {
 
     return (
         enabled ? 
-            <input className="caret-white bg-gray-800 focus:outline-none"autoFocus onKeyDown={handleKeyDown} />
+            <input className="caret-white bg-gray-800 focus:outline-none w-full"autoFocus onKeyDown={handleKeyDown} />
         :
             <p>{text}</p>
     );
