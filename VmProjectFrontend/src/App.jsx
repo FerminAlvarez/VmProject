@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useKeycloak } from '@react-keycloak/web'
 import VmTerminalComponent from './components/VmTerminalComponent';
 import HeroComponent from './components/HeroComponent';
+import PythonTerminalComponent from './components/PythonTerminalComponent';
 
 function App() {
   const { keycloak, initialized } = useKeycloak();
@@ -31,7 +32,9 @@ function App() {
         </div>
 
         <div className='w-1/2 mx-16'>
-          Python Enviroment
+          {keycloak.authenticated &&
+              <PythonTerminalComponent token={keycloak.token} />
+          }
         </div>
       </div>
       
