@@ -14,30 +14,43 @@ function App() {
 
   return (
     <div className='flex flex-col items-center justify-center'>
-      <div className='top-0 mt-10'>
+      <div className='top-0 mt-10 '>
         <HeroComponent />
-        {!keycloak.authenticated &&
-          <button className="bg-green-700" onClick={() => keycloak.login()}>Login</button>
-        }
-        {keycloak.authenticated &&
-            <button className="bg-red-700"onClick={() => keycloak.logout()}>Logout ({keycloak.tokenParsed.preferred_username})</button>
-        }
+        <div className='flex flex-row space-x-2 justify-center'>
+          {!keycloak.authenticated &&
+            <button className="bg-green-700 w-44" onClick={() => keycloak.login()}>Login</button>
+          }
+
+          {keycloak.authenticated &&
+            <button className="bg-red-700 w-44" onClick={() => keycloak.logout()}>Logout ({keycloak.tokenParsed.preferred_username})</button>
+          }
+
+          <Link to="/public">
+            <button className="bg-sky-900 w-44 text-white">Public Page</button>
+          </Link>
+
+          {keycloak.authenticated &&
+            <Link to="/public">
+              <button className="bg-sky-900 w-44 text-white">Protected Page</button>
+            </Link>
+          }
+        </div>
       </div>
 
       <div className='flex justify-center w-screen'>
         <div className='w-1/2 mx-16'>
           {keycloak.authenticated &&
-              <VmTerminalComponent token={keycloak.token} />
+            <VmTerminalComponent token={keycloak.token} />
           }
         </div>
 
         <div className='w-1/2 mx-16'>
           {keycloak.authenticated &&
-              <PythonTerminalComponent token={keycloak.token} />
+            <PythonTerminalComponent token={keycloak.token} />
           }
         </div>
       </div>
-      
+
     </div>
 
   )
