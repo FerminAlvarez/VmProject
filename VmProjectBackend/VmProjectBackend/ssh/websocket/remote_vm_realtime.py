@@ -34,6 +34,7 @@ def execute_vm_command( command):
                 
         except TimeoutError as e:
             print("The operation timed out")
+            yield ("The operation timed out :(")
             
         except Exception as e:
             print("There was an error", e)
