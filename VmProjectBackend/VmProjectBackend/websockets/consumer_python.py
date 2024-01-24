@@ -33,7 +33,7 @@ class ConsumerPY(WebsocketConsumer):
         
         try:
             text_data_json = json.loads(text_data)
-            python_command = text_data_json['python_command']
+            python_command = text_data_json['command']
             
             if("exit" in python_command):
                 self.send_response("Unexpected message")

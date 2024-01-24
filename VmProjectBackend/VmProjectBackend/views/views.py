@@ -39,7 +39,7 @@ def python_command(request):
     if request.method == 'POST':
         try:
             data = json.loads(request.body.decode('utf-8'))
-            command = data.get('python_code', '')
+            command = data.get('command', '')
             print(command)
             
             output = execute_python_command(command)

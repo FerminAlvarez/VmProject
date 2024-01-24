@@ -18,7 +18,7 @@ const WindowsComponent = ({ token, title, WEBSOCKET_URL, EXPECTED_TERMINATING_LI
     };
 
     const handleSendMessage = (message) => {
-        sendMessage(JSON.stringify({ python_command: message }));
+        sendMessage(JSON.stringify({ command: message }));
     };
 
     return (
