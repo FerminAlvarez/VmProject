@@ -1,0 +1,349 @@
+{
+	"info": {
+		"_postman_id": "c1845aa4-a954-424b-9c98-a70ae845b3e5",
+		"name": "Project VM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19971795"
+	},
+	"item": [
+		{
+			"name": "Authenticate",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "test2",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "test2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"auth"
+					]
+				},
+				"description": "This endpoint facilitates user authorization through Basic Authentication and returns an authentication token upon successful validation of credentials"
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticated Endpoint For Test",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0SERxNDExQTJWNGplSGt2dHpCMk05M2tvZFVuVDN6RHZpcDV0MGF1MnNrIn0.eyJleHAiOjE3MDYyMTg0OTUsImlhdCI6MTcwNjIxNDg5NSwianRpIjoiNTUwN2VjZjYtZjZlYy00ODkxLWEyODMtYWRjM2FkOWVlZTM0IiwiaXNzIjoiaHR0cDovLzEyNy4wLjAuMTo0MDAwL3JlYWxtcy92bXJlYWxtIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImEzYjFkOGFlLTBiZWQtNDQ4OS04YzQ4LTAxZGU5M2IxZGQyZSIsInR5cCI6IkJlYXJlciIsImF6cCI6InZtY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6IjhiMTgxNGE2LTA3NjgtNDNmZi04ZDc2LWE5ZjhiMjRhNTc4MiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo1MTczIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtdm1yZWFsbSIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInNpZCI6IjhiMTgxNGE2LTA3NjgtNDNmZi04ZDc2LWE5ZjhiMjRhNTc4MiIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6InRlc3QyIHRlc3QyIiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdDIiLCJnaXZlbl9uYW1lIjoidGVzdDIiLCJmYW1pbHlfbmFtZSI6InRlc3QyIiwiZW1haWwiOiJ0ZXN0MkBnbWFpbC5jb20ifQ.WfWb5wWaa64Wc55pUUIzufUGn0GbyIhFYnUpY5Zo4Rf-BDc0UzGyK9-ODndosWTc9D8BAbh9VjeVngmPOguNp4Uo0fxWUDJERA2ezsVk9-RZXxLfYf7PM27U6ErJYKTkrj-BLehehOjsFhqMV1qp0QFocxbxhwF6J-xqFzoPIJzCMYul9m_IEfoz26jm84wGjwHs2QTKvnNyZHVWlGHpleFEorSVhidweMcpUGiVnXVfGLY-QgT9EzlepOblYMVXbbd-AjZDm2BgaIvZEGr10L8nPfZDqfhOA8F0TtwAZFMVM1x2xdq5WKBVZzCeRGqHBF3pX1YnGIy6AsGAxRq-jQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/hello/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"hello",
+						""
+					]
+				},
+				"description": "An authenticated endpoint designed for testing purposes, requiring a Bearer Token in the request header for access validation. This ensures that only authorized users with a valid token can interact with this testing resource"
+			},
+			"response": []
+		},
+		{
+			"name": "Execute Command VM",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0SERxNDExQTJWNGplSGt2dHpCMk05M2tvZFVuVDN6RHZpcDV0MGF1MnNrIn0.eyJleHAiOjE3MDYyMTg0OTUsImlhdCI6MTcwNjIxNDg5NSwianRpIjoiNTUwN2VjZjYtZjZlYy00ODkxLWEyODMtYWRjM2FkOWVlZTM0IiwiaXNzIjoiaHR0cDovLzEyNy4wLjAuMTo0MDAwL3JlYWxtcy92bXJlYWxtIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImEzYjFkOGFlLTBiZWQtNDQ4OS04YzQ4LTAxZGU5M2IxZGQyZSIsInR5cCI6IkJlYXJlciIsImF6cCI6InZtY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6IjhiMTgxNGE2LTA3NjgtNDNmZi04ZDc2LWE5ZjhiMjRhNTc4MiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo1MTczIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtdm1yZWFsbSIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInNpZCI6IjhiMTgxNGE2LTA3NjgtNDNmZi04ZDc2LWE5ZjhiMjRhNTc4MiIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6InRlc3QyIHRlc3QyIiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdDIiLCJnaXZlbl9uYW1lIjoidGVzdDIiLCJmYW1pbHlfbmFtZSI6InRlc3QyIiwiZW1haWwiOiJ0ZXN0MkBnbWFpbC5jb20ifQ.WfWb5wWaa64Wc55pUUIzufUGn0GbyIhFYnUpY5Zo4Rf-BDc0UzGyK9-ODndosWTc9D8BAbh9VjeVngmPOguNp4Uo0fxWUDJERA2ezsVk9-RZXxLfYf7PM27U6ErJYKTkrj-BLehehOjsFhqMV1qp0QFocxbxhwF6J-xqFzoPIJzCMYul9m_IEfoz26jm84wGjwHs2QTKvnNyZHVWlGHpleFEorSVhidweMcpUGiVnXVfGLY-QgT9EzlepOblYMVXbbd-AjZDm2BgaIvZEGr10L8nPfZDqfhOA8F0TtwAZFMVM1x2xdq5WKBVZzCeRGqHBF3pX1YnGIy6AsGAxRq-jQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"command\":\"pwd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/execute-command-vm",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"execute-command-vm"
+					]
+				},
+				"description": "An endpoint for running commands on a non-persistent virtual machine. Requires a Bearer Token in the request header for authentication and security. Use this endpoint to execute specific commands or scripts on the virtual machine without persistence."
+			},
+			"response": [
+				{
+					"name": "Execute Command VM - Example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"command\":\"ls\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/command-vm/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"command-vm",
+								""
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Execute Command Python",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0SERxNDExQTJWNGplSGt2dHpCMk05M2tvZFVuVDN6RHZpcDV0MGF1MnNrIn0.eyJleHAiOjE3MDYyMTg3NDIsImlhdCI6MTcwNjIxNTE0MiwianRpIjoiZWViOGVhMGMtMTMyNi00OGNjLTk5ZmEtNjY0YWFiYmEzNWM1IiwiaXNzIjoiaHR0cDovLzEyNy4wLjAuMTo0MDAwL3JlYWxtcy92bXJlYWxtIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImEzYjFkOGFlLTBiZWQtNDQ4OS04YzQ4LTAxZGU5M2IxZGQyZSIsInR5cCI6IkJlYXJlciIsImF6cCI6InZtY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6ImJlOWU0ZjIzLTA2ZjgtNGFhNy04MWJjLTZkYjU1MjUyMjg1ZCIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo1MTczIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtdm1yZWFsbSIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInNpZCI6ImJlOWU0ZjIzLTA2ZjgtNGFhNy04MWJjLTZkYjU1MjUyMjg1ZCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6InRlc3QyIHRlc3QyIiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdDIiLCJnaXZlbl9uYW1lIjoidGVzdDIiLCJmYW1pbHlfbmFtZSI6InRlc3QyIiwiZW1haWwiOiJ0ZXN0MkBnbWFpbC5jb20ifQ.nQ2WwM4vTT6X_e1dLnhqKQ80xPSSzTP1XJLyLjRCICnON-ikuRPqLzbLwYPdiOYDtyVbSR7v8R5A1NkW75E1zyOplFw_KP5mF2u6Z8uld4znNN5hDugs_NCfSVMJ8u_Bj3HKEKoRKwLuD-rx_U83JeGeTWQtJEvNkOfEAaU5lBCPlMLxLbZVqK-bz9Ru4SmidK8DLoX9RM1nIGexDihQTBZKqjYcl4lhz_Rlu38JmiKx4O2l3SINH2rz-ibFZZ6dpwG6TExsUbE-CCqCn1lFjMom9L0cFZvHsNXP7vPEvOV7tN9eEzR4ycEUoapk7HQ3xv1wLwChDEExre7U7dfyRg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"command\": \"print(7+2)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/execute-command-python",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"execute-command-python"
+					]
+				},
+				"description": "Executes Python commands or scripts on the virtual machine. Utilize this endpoint to run Python commands. Authentication is required using a Bearer Token provided in the request header for secure access."
+			},
+			"response": [
+				{
+					"name": "Execute Command Python - Example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"command\": \"print(2+2)\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/execute-command-python",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"execute-command-python"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Execute Python File",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0SERxNDExQTJWNGplSGt2dHpCMk05M2tvZFVuVDN6RHZpcDV0MGF1MnNrIn0.eyJleHAiOjE3MDYyMTg5MDUsImlhdCI6MTcwNjIxNTMwNSwianRpIjoiYTQ1NTI2YTQtNDhhNC00ZTFhLWFmMTYtMjA5Y2FmMWIzM2YxIiwiaXNzIjoiaHR0cDovLzEyNy4wLjAuMTo0MDAwL3JlYWxtcy92bXJlYWxtIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImEzYjFkOGFlLTBiZWQtNDQ4OS04YzQ4LTAxZGU5M2IxZGQyZSIsInR5cCI6IkJlYXJlciIsImF6cCI6InZtY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6IjE3NTQ1ODM1LTgwNjAtNDM0OC1iNmZlLTM1MDZhZTgyNDFmOSIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo1MTczIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtdm1yZWFsbSIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInNpZCI6IjE3NTQ1ODM1LTgwNjAtNDM0OC1iNmZlLTM1MDZhZTgyNDFmOSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6InRlc3QyIHRlc3QyIiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdDIiLCJnaXZlbl9uYW1lIjoidGVzdDIiLCJmYW1pbHlfbmFtZSI6InRlc3QyIiwiZW1haWwiOiJ0ZXN0MkBnbWFpbC5jb20ifQ.gZx5XIjpRomfUP1mBlQbxbSFGGb-aJb_L4WrLlS53-WKDXfMDVQe-KGCq_bykEBFfDmiBStRvjmk1qrXwK_HmPlN0bgAHYNuaNz6S4SSbcxUrqXMjA7xXXLCuBXcgC61K3EQT1LUU7FzVwVivdGE-OpXee9w9TVlZ92DHgB_3jbqoEcIGRhL6ZrD1N_9TuhKZQbwTFzj1xm34xLJi4AmnWchBdu9ZrsVWD2gEHIXNtthA6S-3Hnnv4wNLRv0U2KvZ1uf52POLm-zbsdmMxYiKZ1U2EMm2cDRZtB2RMS-BnNnh7Fk1q6fsptHF1y0I9K3wgAXiy2QxXhmxmuYzDvXIg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/feera/Downloads/archivo.py"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/file-python",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"file-python"
+					]
+				},
+				"description": "Allows the upload of a Python file for execution on the virtual machine. Submit a Python script file via a POST request, and the endpoint will execute the script, providing the result as a response. Authentication is required with a Bearer Token in the request header for secure access. Use this endpoint for sending Python scripts, executing them, and retrieving the output."
+			},
+			"response": [
+				{
+					"name": "Execute Python File - Example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/feera/Downloads/archivo.py"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/file-python",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"file-python"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Google Cloud Function - Execute Python File",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/C:/Users/feera/Downloads/archivo.py"
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-vmproject-411814.cloudfunctions.net/ExecutePythonCode",
+					"protocol": "https",
+					"host": [
+						"us-central1-vmproject-411814",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"ExecutePythonCode"
+					]
+				},
+				"description": "Facilitates testing of a Google Cloud Function. Upload a script or code snippet to execute on the function and retrieve the result. Submit the content via a POST request, and authentication is required with a Bearer Token in the request header for secure access. This endpoint is designed for testing and experimenting with Google Cloud Functions."
+			},
+			"response": [
+				{
+					"name": "Google Cloud Function - Execute Python File - Example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/C:/Users/feera/Downloads/archivo.py"
+							}
+						},
+						"url": {
+							"raw": "https://us-central1-vmproject-411814.cloudfunctions.net/ExecutePythonCode",
+							"protocol": "https",
+							"host": [
+								"us-central1-vmproject-411814",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"ExecutePythonCode"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}
