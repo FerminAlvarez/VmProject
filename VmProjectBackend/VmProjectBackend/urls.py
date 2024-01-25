@@ -22,7 +22,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("hello/", views.hello, name="hello"),
     path("auth/", views.get_token, name="get_token"),
-    path("command-vm/", views.command_vm, name="command_vm"),
-    path("command-python/", views.python_command, name="python_command"),
-    path("file-python/", views.file_python, name="file_python"),
+    path("execute-command-vm", views.command_vm, name="command_vm"),
+    path("execute-command-python", views.python_command, name="python_command"),
+    path("file-python", views.file_python, name="file_python"),
 ]
