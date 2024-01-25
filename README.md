@@ -1,5 +1,5 @@
 # Project: Project VM
-
+# HTTP End-points
 ## End-point: Authenticate
 This endpoint facilitates user authorization through Basic Authentication and returns an authentication token upon successful validation of credentials
 ### Method: GET
@@ -54,7 +54,7 @@ An endpoint for running commands on a non-persistent virtual machine. Requires a
 |---|---|---|
 |token|yourtoken|string|
 
-### Response: undefined
+### Response: 
 ```json
 {
     "output": [
@@ -86,7 +86,7 @@ Executes Python commands or scripts on the virtual machine. Utilize this endpoin
 |---|---|---|
 |token|yourtoken|string|
 
-### Response: undefined
+### Response:
 ```json
 {
     "output": [
@@ -117,7 +117,7 @@ Allows the upload of a Python file for execution on the virtual machine. Submit 
 |---|---|---|
 |token|yourtoken|string|
 
-### Response: undefined
+### Response: 
 ```json
 {
     "output": [
@@ -135,7 +135,7 @@ Facilitates testing of a Google Cloud Function. Upload a script or code snippet 
 >```
 >https://us-central1-vmproject-411814.cloudfunctions.net/ExecutePythonCode
 >```
-### Response: undefined
+### Response: 
 ```json
 {
     "output": [
@@ -148,5 +148,78 @@ Facilitates testing of a Google Cloud Function. Upload a script or code snippet 
 
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
+# Websockets
+## Execute VM Commands
+This WebSocket facilitates the execution of commands on a persistent virtual machine and retreive messages in real-time. To ensure authentication and security, a Bearer Token must be included in the url. Utilize this websocket to run specific commands or scripts on the virtual machine with persistence.
+
+
+>```
+>ws://localhost:8000/vm/?token=Bearer token
+>```
+
+### Connected Response
+```
+Linux vmproject 5.10.0-27-cloud-amd64 #1 SMP Debian 5.10.205-2 (2023-12-31) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Thu Jan 25 21:24:14 2024 from 181.197.251.115
+
+vm@vmproject:~$ 
+```
+### Send message
+
+```
+{
+    "command":"pwd"
+}
+```
+
+### Response: 
+```
+pwd
+```
+```
+/home/vm
+vm@vmproject:~$ 
+```
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+## Execute Python Commands
+This WebSocket is designed for executing python commands on a persistent virtual machine and retreive messages in real-time. Authentication and security are maintained by including a Bearer Token in the URL. Employ this WebSocket to execute specific Python commands or scripts on the virtual machine with persistence.
+
+
+>```
+>ws://localhost:8000/python/?token=Bearer token
+>```
+
+### Connected Response
+```
+>>>
+```
+### Send message
+
+```
+{
+    "command":"print('A')"
+}
+```
+
+### Response: 
+```
+print('A')
+```
+```
+A
+>>> 
+```
+
+
+
 _________________________________________________
 Powered By: [postman-to-markdown](https://github.com/bautistaj/postman-to-markdown/)
