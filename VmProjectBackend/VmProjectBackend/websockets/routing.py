@@ -1,8 +1,8 @@
 from django.urls import path
-from .consumer_vm import ConsumerVM
-from .consumer_python import ConsumerPY
+from .consumers.vm_websocket_consumer import ConsumerVM
+from .consumers.python_websocket_consumer import ConsumerPY
 
 websocket_urlpatterns = [
-    path('vm/', ConsumerVM.as_asgi()),
-    path('python/', ConsumerPY.as_asgi()),
+    path("vm/", ConsumerVM.as_asgi()),
+    path("python/", ConsumerPY.as_asgi()),
 ]

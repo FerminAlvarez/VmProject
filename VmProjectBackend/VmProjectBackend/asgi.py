@@ -14,11 +14,11 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
 from .websockets.routing import websocket_urlpatterns
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'VmProjectBackend.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "VmProjectBackend.settings")
 
-application = ProtocolTypeRouter({
-    'http':get_asgi_application(),
-    'websocket': AuthMiddlewareStack(
-        URLRouter(websocket_urlpatterns)
-    )
-})
+application = ProtocolTypeRouter(
+    {
+        "http": get_asgi_application(),
+        "websocket": AuthMiddlewareStack(URLRouter(websocket_urlpatterns)),
+    }
+)

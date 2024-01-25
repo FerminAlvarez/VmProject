@@ -19,9 +19,9 @@ from django.urls import path
 from .views import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     path("hello/", views.hello, name="hello"),
     path("auth/", views.get_token, name="get_token"),
     path("command-vm/", views.command_vm, name="command_vm"),
-    path('command-python/', views.python_command, name='python_command'),
+    path("command-python/", views.python_command, name="python_command"),
 ]
