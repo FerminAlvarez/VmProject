@@ -3,6 +3,7 @@ import App from "./App";
 import AuthenticationHandler from "./auth/AuthenticationHandler";
 import ProtectedPage from "./pages/ProtectedPage";
 import PublicPage from "./pages/PublicPage";
+import FilePythonPage from "./pages/FilePythonPage";
 
 export const router = createBrowserRouter([
     {
@@ -18,6 +19,14 @@ export const router = createBrowserRouter([
         element: (
             <AuthenticationHandler>
                 <ProtectedPage />
+            </AuthenticationHandler>
+        ),
+    },
+    {
+        path: "python-file",
+        element: (
+            <AuthenticationHandler>
+                <FilePythonPage />
             </AuthenticationHandler>
         ),
     },

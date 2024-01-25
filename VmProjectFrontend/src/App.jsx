@@ -31,6 +31,12 @@ function App() {
                                     Protected Page
                                 </button>
                             </Link>
+
+                            <Link to="/python-file">
+                                <button className="bg-sky-900 w-44 text-white">
+                                    Run Python files
+                                </button>
+                            </Link>
                         </>
                     )}
                 </div>

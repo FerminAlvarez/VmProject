@@ -38,7 +38,7 @@ def execute_python_command(command):
     try:
         client = open_connection()
         docker_command = f'{DOCKER_COMMAND} "{command}"'
-        stdin, stdout, stderr = client.exec_command(docker_command)
+        stdin, stdout, stderr = client.exec_command(docker_command, get_pty=True)
         result = stdout.read().decode()
 
         output = build_output(result)

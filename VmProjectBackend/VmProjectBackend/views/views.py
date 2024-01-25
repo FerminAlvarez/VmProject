@@ -4,6 +4,7 @@ from ..services.intermittent_remote_service import (
     execute_vm_command,
     execute_python_command,
 )
+from ..services.google_functions_service import execute_python_file
 from django.views.decorators.csrf import csrf_exempt
 import json
 import logging
@@ -58,6 +59,27 @@ def python_command(request):
             logger.error(f"Invalid JSON in the request body {data}")
             return JsonResponse(
                 {"error": "Invalid JSON in the request body"}, status=400
+            )
+    else:
+        return JsonResponse({"error": "Only POST requests are allowed"}, status=400)
+
+
+@csrf_exempt
+def file_python(request):
+    if not authenticated(request.headers.get("Authorization")):
+        return JsonResponse({"error": "Authentication failed"}, status=401)
+
+    if request.method == "POST" and request.FILES["file"]:
+        try:
+            uploaded_file = request.FILES["file"]
+            logger.info(f"Received file: {uploaded_file}")
+
+            output = execute_python_file(uploaded_file)
+            return JsonResponse({"output": output})
+        except Exception as e:
+            logger.error("Invalid JSON in the request body")  # TODO
+            return JsonResponse(
+                {"error": "Invalid JSON in the request body"}, status=400  # TODO
             )
     else:
         return JsonResponse({"error": "Only POST requests are allowed"}, status=400)
