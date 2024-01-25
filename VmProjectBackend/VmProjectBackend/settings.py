@@ -133,12 +133,12 @@ LOGGING = {
         "file_info": {
             "level": "INFO",
             "class": "logging.FileHandler",
-            "filename": BASE_DIR / "info_logs.log",
+            "filename": BASE_DIR / "./logs/info_logs.log",
         },
         "file_warnings": {
             "level": "WARNING",
             "class": "logging.FileHandler",
-            "filename": BASE_DIR / "warning_logs.log",
+            "filename": BASE_DIR / "./logs/warning_logs.log",
         },
     },
     "loggers": {
