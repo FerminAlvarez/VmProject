@@ -13,9 +13,7 @@ const FilePythonComponent = ({ token }) => {
     };
 
     const handleOutput = (newMessages) => {
-        let parsedOutput = JSON.parse(newMessages.output).output;
-        console.log(parsedOutput);
-        setMessages((prevMessages) => [...prevMessages, ...parsedOutput]);
+        setMessages((prevMessages) => [...prevMessages, ...newMessages.output]);
     };
 
     const handleUpload = async () => {
