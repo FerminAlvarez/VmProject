@@ -1,5 +1,8 @@
 import paramiko
 from django.conf import settings
+import logging
+
+logger = logging.getLogger(__name__)
 
 VMHOST=settings.VMHOST
 VMUSER=settings.VMUSER
@@ -14,12 +17,12 @@ def execute_vm_command(command):
         client.connect(VMHOST, username=VMUSER, pkey=private_key)
         stdin, stdout, stderr = client.exec_command(command)
         result = stdout.read().decode()
-        print(result)
-        
+        logger.info(f"Output {result}")
+                
         output  = build_output(result)
         return output
     except Exception as e:
-        print("There was an error", e)
+        logger.error(f"There was an error: {e}")
         return stderr
 
 def execute_python_command(command): 
@@ -33,12 +36,12 @@ def execute_python_command(command):
 
         stdin, stdout, stderr = client.exec_command(docker_command)
         result = stdout.read().decode()
-        print(result)
+        logger.info(result)
         
         output  = build_output(result)
         return output
     except Exception as e:
-        print("There was an error", e)
+        logger.error(f"There was an error: {e}")
         return stderr
 
 

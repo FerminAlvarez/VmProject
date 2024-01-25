@@ -2,6 +2,9 @@ from keycloak import KeycloakOpenID
 from keycloak.exceptions import KeycloakAuthenticationError
 from django.conf import settings
 import base64
+import logging
+
+logger = logging.getLogger(__name__)
 
 keycloak_openid = KeycloakOpenID(server_url=settings.KEYCLOAK_SERVER_URL,
                                 realm_name=settings.KEYCLOAK_REALM,
@@ -17,7 +20,7 @@ def authenticated(authorization_header):
         else:
             return False
     except KeycloakAuthenticationError as e: 
-            print(e)
+            logger.error(f"Authentication error: {e}")
             return False
     
 def get_access_token(authorization_header):
@@ -35,5 +38,4 @@ def get_access_token(authorization_header):
 
             return access_token
     except Exception as e:
-        print(e)
-    
+        logger.error(f"Error while retrieving access token: {e}")    

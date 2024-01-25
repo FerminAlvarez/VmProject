@@ -1,7 +1,9 @@
 from django.conf import settings
 import re
 import paramiko
-import time
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 VMHOST=settings.VMHOST
@@ -26,18 +28,18 @@ def open_client():
     channel.settimeout(5)
 
 def execute_vm_command( command):
-        print(command)
+        logger.info(f"Execute command: {command}")
         try:
             channel.send(command + '\n')
             
             yield from __get_all_lines()
                 
         except TimeoutError as e:
-            print("The operation timed out")
+            logger.error("The operation timed out")
             yield ("The operation timed out :(")
             
         except Exception as e:
-            print("There was an error", e)
+            logger.error(f"There was an error: {e}")
             return str(e)
 
 
