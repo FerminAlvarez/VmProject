@@ -9,6 +9,8 @@ VMUSER = settings.VMUSER
 VMPASSWORD = settings.VMPASSWORD
 VMPRIVATE_KEY_PATH = settings.VMPRIVATE_KEY_PATH
 
+DOCKER_COMMAND = "sudo docker run -i --rm python-sandbox python -c"
+
 
 def open_connection():
     client = paramiko.SSHClient()
@@ -35,7 +37,7 @@ def execute_vm_command(command):
 def execute_python_command(command):
     try:
         client = open_connection()
-        docker_command = f'sudo docker run -i --rm python-sandbox python -c "{command}"'
+        docker_command = f'{DOCKER_COMMAND} "{command}"'
         stdin, stdout, stderr = client.exec_command(docker_command)
         result = stdout.read().decode()
 

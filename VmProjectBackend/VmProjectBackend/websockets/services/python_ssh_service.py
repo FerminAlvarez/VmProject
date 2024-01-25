@@ -11,6 +11,8 @@ VMUSER = settings.VMUSER
 VMPASSWORD = settings.VMPASSWORD
 VMPRIVATE_KEY_PATH = settings.VMPRIVATE_KEY_PATH
 
+DOCKER_COMMAND = "sudo docker run -it python-sandbox \n"
+
 BUFFER_SIZE = 4096
 
 EXPECTED_TERMINATING_LINE = ">>>"
@@ -26,7 +28,7 @@ def open_client():
     client.connect(VMHOST, username=VMUSER, pkey=private_key)
     channel = client.invoke_shell()
     channel.settimeout(5)
-    channel.send("sudo docker run -it python-sandbox" + "\n")
+    channel.send(DOCKER_COMMAND)
 
 
 def execute_python_command(command):
