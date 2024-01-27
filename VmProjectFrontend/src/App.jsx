@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 import "./App.css";
 import HeroComponent from "./components/Sections/HeroComponent";
 import TerminalsContainerComponent from "./components/TerminalsContainerComponent";
-<<<<<<< HEAD
-=======
-import HeroComponent from "./components/Sections/HeroComponent";
->>>>>>> origin/master
 
 function App() {
     const { keycloak } = useKeycloak();
