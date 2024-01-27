@@ -1,0 +1,32 @@
+version: "3"
+services:
+    backend:
+        build:
+            context: ./VmProjectBackend
+        ports:
+            - "8000:8000"
+        depends_on:
+            - keycloak
+        networks:
+            - project_network
+
+    frontend:
+        build:
+            context: ./VmProjectFrontend
+        ports:
+            - "5173:5173"
+        depends_on:
+            - backend
+        networks:
+            - project_network
+
+    keycloak:
+        image: ferminalvarezdev/keycloak-projectvm
+        ports:
+            - "8080:8080"
+        networks:
+            - project_network
+
+networks:
+    project_network:
+        driver: bridge
