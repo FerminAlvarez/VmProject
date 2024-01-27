@@ -1,4 +1,34 @@
 # Project: Project VM
+## Prerequisites
+Before you begin, ensure you have the following software installed on your machine:
+
+* Git
+* Docker Desktop
+
+## Getting Started
+To get started with VmProject, follow these steps:
+
+1. Clone the repository to your local machine:
+```bash
+git clone https://github.com/FerminAlvarez/VmProject
+```
+
+2. Change into the project directory:
+```bash
+cd VmProject
+```
+3. Build the Docker images:
+```bash
+docker-compose build
+```
+Start the project:
+
+```bash
+docker-compose up
+```
+
+The application should now be running. You can access it by navigating to http://localhost:5173/ in your web browser.
+
 # HTTP End-points
 ## End-point: Authenticate
 This endpoint facilitates user authorization through Basic Authentication and returns an authentication token upon successful validation of credentials
