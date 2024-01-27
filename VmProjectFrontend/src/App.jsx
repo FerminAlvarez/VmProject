@@ -2,7 +2,7 @@ import { useKeycloak } from "@react-keycloak/web";
 import { Link } from "react-router-dom";
 import "./App.css";
 import TerminalsContainerComponent from "./components/TerminalsContainerComponent";
-import HeroComponent from "./components/sections/HeroComponent";
+import HeroComponent from "./components/Sections/HeroComponent";
 
 function App() {
     const { keycloak } = useKeycloak();
