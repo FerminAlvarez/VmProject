@@ -1,5 +1,5 @@
 # Project: Project VM
-##Description:
+## Description:
 This project involves the development of a web application enabling user interaction with a VM terminal and a Python environment in real-time.
 
 ## Project Details Implemented:
