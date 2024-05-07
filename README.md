@@ -1,4 +1,23 @@
 # Project: Project VM
+##Description:
+This project involves the development of a web application enabling user interaction with a VM terminal and a Python environment in real-time.
+
+## Project Details Implemented:
+### User Authentication:
+- Implemented user authentication using Keycloak, with registration, login, and logout capabilities.
+- Integrated this system into both the frontend and backend.
+### Backend Development:
+- Utilized Django for backend development.
+- Created API endpoints for interacting with the VM terminal and Python environment.
+- Ensured secure and efficient backend-to-terminal communication.
+### Frontend Development:
+- Developed a React-based frontend.
+- Featured two interactive windows for real-time VM and Python terminal interactions.
+- Designed an intuitive interface for these functionalities.
+### Real-Time Communication:
+- Utilized WebSocket for live interaction between the frontend and terminals.
+- Facilitated immediate command execution and response display.
+
 ## Prerequisites
 Before you begin, ensure you have the following software installed on your machine:
 
